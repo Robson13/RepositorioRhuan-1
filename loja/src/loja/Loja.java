@@ -7,9 +7,12 @@ package loja;
 
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import loja.acesso.DAOCliente;
+import loja.acesso.DAOClienteImpl;
 import loja.acesso.DAOFornecedorImpl;
 import loja.erros.ConexaoException;
 import loja.erros.RepositorioException;
+import loja.negocio.basica.Cliente;
 import loja.negocio.basica.Fornecedor;
 import loja.util.GerenciadorConexao;
 import loja.util.GerenciadorConexaoMysql;
@@ -30,13 +33,18 @@ public class Loja {
         try{
         
             Connection g =  conn.conectar();
-            DAOFornecedorImpl dao = new DAOFornecedorImpl();
+           /* DAOFornecedorImpl dao = new DAOFornecedorImpl();
            
             Fornecedor f = new Fornecedor();
             f.setCnpj("123123123178");
             f.setNome("Rhuan");
             f.setDataCadastro("2016-05-18");
             dao.inserir(f);
+            */
+            DAOCliente dao = new DAOClienteImpl();
+            Cliente cc = new Cliente();
+            cc.setId(1);
+            dao.excluir(cc);
             
             JOptionPane.showMessageDialog(null, "Funfou");
             
