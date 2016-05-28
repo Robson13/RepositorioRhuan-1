@@ -143,5 +143,30 @@ public class DAOClienteImpl implements DAOCliente{
             GC.desconectar(cc);
         }
     }
+    @Override
+    public Cliente pesquisar(String cpf) throws ConexaoException, RepositorioException {
+        Cliente c = null;     
+        String sql = "SELECT id,nome,cpf,fone,email,endereco,data_cadastro FROM cliente WHERE cpf = ?";
+        try{
+            PreparedStatement pstm = GC.conectar().prepareStatement(sql);
+            pstm.setString(1, cpf);
+            try (ResultSet rs = pstm.executeQuery()){
+            if(rs.next()){
+                c = new Cliente();
+                c.setId(rs.getInt("id"));
+                c.setNome(rs.getString("nome"));
+                c.setCpf(rs.getString("cpf"));
+                c.setFone(rs.getString("fone"));
+                c.setEmail(rs.getString("email"));
+                c.setEndereco(rs.getString("endereco"));
+                c.setData_cadastro(rs.getString("data_cadastro"));
+                }
+            }
+            return c;
+            
+        }catch(SQLException e){
+            throw new RepositorioException();
+        }
+    }
     
 }

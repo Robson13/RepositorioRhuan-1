@@ -59,4 +59,14 @@ public interface DAOCliente {
      * @throws RepositorioException 
      */
     public Cliente pesquisar(Integer id)throws ConexaoException, RepositorioException;
+    
+    /**
+     * Pesquisa um cliente no banco
+     * @param cpf atributo com o cpf do cliente
+     * @return clientes num Array
+     * @throws ConexaoException
+     * @throws RepositorioException 
+     */
+    public Cliente pesquisar(String cpf)throws ConexaoException, RepositorioException;
+
 }
